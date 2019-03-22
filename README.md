@@ -8,6 +8,9 @@
 Run the command
  ### `git clone https://github.com/Manishkotian/course-list.git`
  
+ Go to project directory
+ ### `cd course-list`
+ 
  ### Package install
 
 Run the command
