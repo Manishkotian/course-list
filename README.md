@@ -32,7 +32,7 @@ Run the command
 4. Styles are the global stylesheet used for styling.
 5. Utils are the functionality done like getting provider, universities, subject, child subject lists, formatting date and length, apply filter and clear filter.
 
-##Features
+## Features
 1. User can filter by next session date(nearest date last) which will sort the course list displaying next session date in ascending order.
 2. User can filter by next session date(nearest date first) which will sort the course list displaying next session date in descending order.
 3. User can filter by length(highest first ) which will sort the course list displaying length in descending order.
