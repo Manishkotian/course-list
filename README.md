@@ -1,9 +1,9 @@
 
-## Course List
+# Course List
 
-### How to setup
+## How to setup
 
-####Clone the project
+###Clone the project
 
 Run the command
  ### `git clone https://github.com/Manisotian/course-list.git`
@@ -14,7 +14,7 @@ Run the command
  ### `npm install`
 
 
-### How To Run
+## How To Run
 
 Run the command
  ### `npm start`
