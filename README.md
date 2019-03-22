@@ -3,12 +3,12 @@
 
 ## How to setup
 
-###Clone the project
+### Clone the project
 
 Run the command
  ### `git clone https://github.com/Manisotian/course-list.git`
  
- ####Package install
+ ### Package install
 
 Run the command
  ### `npm install`
