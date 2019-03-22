@@ -3,7 +3,12 @@
 
 ### How to setup
 
-Clone the project
+####Clone the project
+
+Run the command
+ ### `git clone https://github.com/Manisotian/course-list.git`
+ 
+ ####Package install
 
 Run the command
  ### `npm install`
@@ -26,3 +31,11 @@ Run the command
 3. Constants are the strings used in all components.
 4. Styles are the global stylesheet used for styling.
 5. Utils are the functionality done like getting provider, universities, subject, child subject lists, formatting date and length, apply filter and clear filter.
+
+##Features
+1. User can filter by next session date(nearest date last) which will sort the course list displaying next session date in ascending order.
+2. User can filter by next session date(nearest date first) which will sort the course list displaying next session date in descending order.
+3. User can filter by length(highest first ) which will sort the course list displaying length in descending order.
+4. User can filter by length(lowest first ) which will sort the course list displaying length in ascending order.
+5. User can clear the filter applied using clear button.
+6. User can filter the course list using child subject.
