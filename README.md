@@ -6,7 +6,7 @@
 ### Clone the project
 
 Run the command
- ### `git clone https://github.com/Manisotian/course-list.git`
+ ### `git clone https://github.com/Manishkotian/course-list.git`
  
  ### Package install
 
