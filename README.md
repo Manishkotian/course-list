@@ -1,15 +1,17 @@
 
-## How To Setup
+## Course List
+
+### How to setup
 
 Clone the project
 
-Run
+Run the command
  ### `npm install`
 
 
 ### How To Run
 
-Run 
+Run the command
  ### `npm start`
 
 ## Process of implementation
