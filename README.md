@@ -42,6 +42,3 @@ Run the command
 4. User can filter by length(lowest first ) which will sort the course list displaying length in ascending order.
 5. User can clear the filter applied using clear button.
 6. User can filter the course list using child subject.
-
-## Note
-In my current organization we  don't write unit test, due to my busy schedule in my current job it was little more time consuming for me to learn and implement unit test in this code base, so i was unable to write test cases.
