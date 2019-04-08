@@ -5,21 +5,16 @@ import {Badge, Button, Row} from 'react-bootstrap';
 import CardComponent from '../../components/Card';
 import NavBarComponent from '../../components/NavBar';
 import Constants from '../../constants';
+import { connect } from 'react-redux'
+import {setApiData, setProviderListData, setUniversityListData, setSubjectListData, setChildSubjectListData, 
+	setFilteredArray, setTotalCourseFound, setUserCourseFound} from '../../reducer/action';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			apiData: [],
-			providerList: [],
-			universitiesList: [],
-			subjectList: [],
-			childSubjectList: [],
 			isLoading: true,
             error: null,
-			filteredArray: [],
-			totalCourseFound : 0,
-			userCoursesFound: 0
 		};
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 		this.clearFilter = this.clearFilter.bind(this);
@@ -52,16 +47,15 @@ class App extends Component {
 		const subjectList = getSubjectList(data);
 		const childSubjectList = getChildSubjectList(data);
 		const sortedDateArray = getSortedDateAndNumberArray(data);
-
+		this.props.setApiData(sortedDateArray);
+		this.props.setProviderListData(providerList);
+		this.props.setUniversityListData(universitiesList);
+		this.props.setSubjectListData(subjectList);
+		this.props.setChildSubjectListData(childSubjectList);
+		this.props.setFilteredArray(sortedDateArray);
+		this.props.setTotalCourseFound(sortedDateArray.length);
 		this.setState({
-			apiData : sortedDateArray,
-			providerList: providerList,
-			universitiesList: universitiesList,
-			subjectList: subjectList,
-			childSubjectList: childSubjectList,
-			filteredArray: sortedDateArray,
 			isLoading: false,
-			totalCourseFound : sortedDateArray.length,
 		});
 	}
 
@@ -71,25 +65,20 @@ class App extends Component {
 	onChangeHandler(value,type) {
 		if(value) {
 			if(type === 3) {
-				const { filteredArray } =  this.state;
+				const { filteredArray } =  this.props;
 				const filteredCourseList = getFilterCourseList(filteredArray,value,type);
 				const childSubjectList = getChildSubjectList(filteredCourseList);
-				this.setState({
-					filteredArray: filteredCourseList,
-					userCoursesFound: filteredCourseList.length,
-					childSubjectList: childSubjectList,
-					
-				});
+				this.props.setFilteredArray(filteredCourseList);
+				this.props.setUserCourseFound(filteredCourseList.length);
+				this.props.setChildSubjectListData(childSubjectList);
 			}
 			else {
-				const { apiData } =  this.state;
+				const { apiData } =  this.props;
 				const filteredCourseList = getFilterCourseList(apiData,value,type);
 				const childSubjectList = getChildSubjectList(filteredCourseList);
-				this.setState({
-					filteredArray: filteredCourseList,
-					userCoursesFound: filteredCourseList.length,
-					childSubjectList: childSubjectList,
-				});
+				this.props.setFilteredArray(filteredCourseList);
+				this.props.setUserCourseFound(filteredCourseList.length);
+				this.props.setChildSubjectListData(childSubjectList);
 			}
 		}		
 	}
@@ -97,28 +86,24 @@ class App extends Component {
 	//function to clear filter
 	//return: api feteched arrray
 	clearFilter() {
-		const {apiData} = this.state;
+		const {apiData} = this.props;
 		const childSubjectList = getChildSubjectList(apiData);
-		this.setState({
-			filteredArray: apiData,
-			userCoursesFound: 0,
-			childSubjectList: childSubjectList,
-		});
+		this.props.setFilteredArray(apiData);
+		this.props.setUserCourseFound(0);
+		this.props.setChildSubjectListData(childSubjectList);
 	}
 	//function to sort based on next session date and length
 	//param: type of sort selected
 	///return: new filtered array of course list
 	onChangeFilter(type) {
-		const { filteredArray } =  this.state;
+		const { filteredArray } =  this.props;
 		const sortedCourseList = getSortedList(filteredArray,type);
-		this.setState({
-			filteredArray: sortedCourseList,
-			userCoursesFound: sortedCourseList.length,
-		});
+		this.props.setFilteredArray(sortedCourseList);
+		this.props.setUserCourseFound(sortedCourseList.length);
 	}
 	render() {
 		const { totalCoursesFound, courseFoundBasedOnUserSearch } = Constants;
-		const {providerList, universitiesList, subjectList, childSubjectList, filteredArray, totalCourseFound, userCoursesFound} = this.state;
+		const {providerList, universitiesList, subjectList, childSubjectList, filteredArray, totalCourseFound, userCoursesFound} = this.props;
 		if (this.state.isLoading) {
 			return (
 			  <div className="custom-loading-text">
@@ -151,5 +136,49 @@ class App extends Component {
 		);
 	}
 }
+const mapStateToProps = state => {
+	return {
+		apiData: state.apiData,
+		providerList: state.providerList,
+		universitiesList: state.universitiesList,
+		subjectList: state.subjectList,
+		childSubjectList: state.childSubjectList,
+		filteredArray: state.filteredArray,
+		totalCourseFound: state.totalCourseFound,
+		userCoursesFound: state.userCoursesFound,
+	}
+  }
+  
+  const mapDispatchToProps = dispatch => {
+	return {
+		setApiData: data => {
+			dispatch(setApiData(data))
+		},
+		setProviderListData: data => {
+			dispatch(setProviderListData(data))
+		},
+		setUniversityListData: data => {
+			dispatch(setUniversityListData(data))
+		},
+		setSubjectListData: data => {
+			dispatch(setSubjectListData(data))
+		},
+		setChildSubjectListData: data => {
+			dispatch(setChildSubjectListData(data))
+		},
+		setFilteredArray: data => {
+			dispatch(setFilteredArray(data))
+		},
+		setTotalCourseFound: data => {
+			dispatch(setTotalCourseFound(data))
+		},
+		setUserCourseFound: data => {
+			dispatch(setUserCourseFound(data))
+		}
+	}
+  }
 
-export default App;
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(App);

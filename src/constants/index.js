@@ -17,7 +17,14 @@ const Constants = {
     nextSessionDate:'Next Session Date:',
     courseLink: 'Course Link',
     videoLink: 'Video Link',
-    length: 'Length: '
-
+    length: 'Length: ',
+    SET_API_DATA: 'SET_API_DATA',
+    SET_PROVIDER_LIST_DATA: 'SET_PROVIDER_LIST_DATA',
+    SET_UNIVERSITY_LIST_DATA: 'SET_UNIVERSITY_LIST_DATA',
+    SET_SUBJECT_LIST_DATA: 'SET_SUBJECT_LIST_DATA',
+    SET_CHILD_SUBJECT_LIST_DATA: 'SET_CHILD_SUBJECT_LIST_DATA',
+    SET_FILTERED_ARRAY: 'SET_FILTERED_ARRAY',
+    SET_TOTAL_COURSE_FOUND: 'SET_TOTAL_COURSE_FOUND',
+    SET_USER_COURSE_FOUND: 'SET_USER_COURSE_FOUND',
 };
 export default Constants;
